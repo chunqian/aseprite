@@ -4,9 +4,6 @@
 [submodule "third_party/simpleini"]
 	path = third_party/simpleini
 	url = https://github.com/aseprite/simpleini.git
-[submodule "third_party/gtest"]
-	path = third_party/gtest
-	url = https://github.com/aseprite/gtest.git
 [submodule "third_party/libwebp"]
 	path = third_party/libwebp
 	url = https://github.com/aseprite/libwebp.git
@@ -35,7 +32,7 @@
 	url = https://github.com/aseprite/undo.git
 [submodule "laf"]
 	path = laf
-	url = https://github.com/aseprite/laf.git
+	url = https://github.com/chunqian/laf.git
 [submodule "third_party/cmark"]
 	path = third_party/cmark
 	url = https://github.com/aseprite/cmark.git
