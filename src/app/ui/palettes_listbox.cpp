@@ -186,7 +186,7 @@ void PalettesListBox::onPaintResource(Graphics* g, gfx::Rect& bounds, Resource* 
 
 void PalettesListBox::onResourceSizeHint(Resource* resource, gfx::Size& size)
 {
-  size = gfx::Size(0, (2+16+2)*guiscale());
+  size = gfx::Size(0, (2+16+2)*guiscale()*2);
 }
 
 } // namespace app
