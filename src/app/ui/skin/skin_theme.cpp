@@ -202,7 +202,7 @@ static FontData* load_font(std::map<std::string, FontData*>& fonts,
     if (xmlFallback) {
       FontData* fallback = load_font(fonts, xmlFallback, xmlFilename);
       if (fallback) {
-        int size = 10;
+        int size = 16;
         const char* sizeStr = xmlFont->Attribute("size");
         if (sizeStr)
           size = std::strtol(sizeStr, nullptr, 10);
@@ -436,7 +436,7 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
       .FirstChild("dim").ToElement();
     while (xmlDim) {
       std::string id = xmlDim->Attribute("id");
-      uint32_t value = strtol(xmlDim->Attribute("value"), NULL, 10);
+      uint32_t value = strtol(xmlDim->Attribute("value"), NULL, 10)*2;
 
       LOG(VERBOSE, "THEME: Loading dimension %s\n", id.c_str());
 
@@ -475,10 +475,10 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
     while (xmlPart) {
       // Get the tool-icon rectangle
       const char* part_id = xmlPart->Attribute("id");
-      int x = scale*strtol(xmlPart->Attribute("x"), nullptr, 10);
-      int y = scale*strtol(xmlPart->Attribute("y"), nullptr, 10);
-      int w = (xmlPart->Attribute("w") ? scale*strtol(xmlPart->Attribute("w"), nullptr, 10): 0);
-      int h = (xmlPart->Attribute("h") ? scale*strtol(xmlPart->Attribute("h"), nullptr, 10): 0);
+      int x = scale*strtol(xmlPart->Attribute("x"), nullptr, 10)*2;
+      int y = scale*strtol(xmlPart->Attribute("y"), nullptr, 10)*2;
+      int w = (xmlPart->Attribute("w") ? scale*strtol(xmlPart->Attribute("w"), nullptr, 10)*2: 0);
+      int h = (xmlPart->Attribute("h") ? scale*strtol(xmlPart->Attribute("h"), nullptr, 10)*2: 0);
 
       LOG(VERBOSE, "THEME: Loading part %s\n", part_id);
 
@@ -491,12 +491,12 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
         part->setBitmap(0, sliceSheet(part->bitmapRef(0), gfx::Rect(x, y, w, h)));
       }
       else if (xmlPart->Attribute("w1")) { // 3x3-1 part (NW, N, NE, E, SE, S, SW, W)
-        int w1 = scale*strtol(xmlPart->Attribute("w1"), nullptr, 10);
-        int w2 = scale*strtol(xmlPart->Attribute("w2"), nullptr, 10);
-        int w3 = scale*strtol(xmlPart->Attribute("w3"), nullptr, 10);
-        int h1 = scale*strtol(xmlPart->Attribute("h1"), nullptr, 10);
-        int h2 = scale*strtol(xmlPart->Attribute("h2"), nullptr, 10);
-        int h3 = scale*strtol(xmlPart->Attribute("h3"), nullptr, 10);
+        int w1 = scale*strtol(xmlPart->Attribute("w1"), nullptr, 10)*2;
+        int w2 = scale*strtol(xmlPart->Attribute("w2"), nullptr, 10)*2;
+        int w3 = scale*strtol(xmlPart->Attribute("w3"), nullptr, 10)*2;
+        int h1 = scale*strtol(xmlPart->Attribute("h1"), nullptr, 10)*2;
+        int h2 = scale*strtol(xmlPart->Attribute("h2"), nullptr, 10)*2;
+        int h3 = scale*strtol(xmlPart->Attribute("h3"), nullptr, 10)*2;
 
         part->setSpriteBounds(gfx::Rect(x, y, w1+w2+w3, h1+h2+h3));
         part->setSlicesBounds(gfx::Rect(w1, h1, w2, h2));
@@ -514,8 +514,8 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
       // Is it a mouse cursor?
       if (std::strncmp(part_id, "cursor_", 7) == 0) {
         std::string cursorName = std::string(part_id).substr(7);
-        int focusx = scale*std::strtol(xmlPart->Attribute("focusx"), NULL, 10);
-        int focusy = scale*std::strtol(xmlPart->Attribute("focusy"), NULL, 10);
+        int focusx = scale*std::strtol(xmlPart->Attribute("focusx"), NULL, 10)*2;
+        int focusy = scale*std::strtol(xmlPart->Attribute("focusy"), NULL, 10)*2;
 
         LOG(VERBOSE, "THEME: Loading cursor '%s'\n", cursorName.c_str());
 
@@ -583,10 +583,10 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
         const char* r = xmlStyle->Attribute("margin-right");
         const char* b = xmlStyle->Attribute("margin-bottom");
         gfx::Border margin = ui::Style::UndefinedBorder();
-        if (m || l) margin.left(scale*std::strtol(l ? l: m, nullptr, 10));
-        if (m || t) margin.top(scale*std::strtol(t ? t: m, nullptr, 10));
-        if (m || r) margin.right(scale*std::strtol(r ? r: m, nullptr, 10));
-        if (m || b) margin.bottom(scale*std::strtol(b ? b: m, nullptr, 10));
+        if (m || l) margin.left(scale*std::strtol(l ? l: m, nullptr, 10)*2);
+        if (m || t) margin.top(scale*std::strtol(t ? t: m, nullptr, 10)*2);
+        if (m || r) margin.right(scale*std::strtol(r ? r: m, nullptr, 10)*2);
+        if (m || b) margin.bottom(scale*std::strtol(b ? b: m, nullptr, 10)*2);
         style->setMargin(margin);
       }
 
@@ -598,10 +598,10 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
         const char* r = xmlStyle->Attribute("border-right");
         const char* b = xmlStyle->Attribute("border-bottom");
         gfx::Border border = ui::Style::UndefinedBorder();
-        if (m || l) border.left(scale*std::strtol(l ? l: m, nullptr, 10));
-        if (m || t) border.top(scale*std::strtol(t ? t: m, nullptr, 10));
-        if (m || r) border.right(scale*std::strtol(r ? r: m, nullptr, 10));
-        if (m || b) border.bottom(scale*std::strtol(b ? b: m, nullptr, 10));
+        if (m || l) border.left(scale*std::strtol(l ? l: m, nullptr, 10)*2);
+        if (m || t) border.top(scale*std::strtol(t ? t: m, nullptr, 10)*2);
+        if (m || r) border.right(scale*std::strtol(r ? r: m, nullptr, 10)*2);
+        if (m || b) border.bottom(scale*std::strtol(b ? b: m, nullptr, 10)*2);
         style->setBorder(border);
       }
 
@@ -613,10 +613,10 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
         const char* r = xmlStyle->Attribute("padding-right");
         const char* b = xmlStyle->Attribute("padding-bottom");
         gfx::Border padding = ui::Style::UndefinedBorder();
-        if (m || l) padding.left(scale*std::strtol(l ? l: m, nullptr, 10));
-        if (m || t) padding.top(scale*std::strtol(t ? t: m, nullptr, 10));
-        if (m || r) padding.right(scale*std::strtol(r ? r: m, nullptr, 10));
-        if (m || b) padding.bottom(scale*std::strtol(b ? b: m, nullptr, 10));
+        if (m || l) padding.left(scale*std::strtol(l ? l: m, nullptr, 10)*2);
+        if (m || t) padding.top(scale*std::strtol(t ? t: m, nullptr, 10)*2);
+        if (m || r) padding.right(scale*std::strtol(r ? r: m, nullptr, 10)*2);
+        if (m || b) padding.bottom(scale*std::strtol(b ? b: m, nullptr, 10)*2);
         style->setPadding(padding);
       }
 
@@ -705,8 +705,8 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
         const char* y = xmlLayer->Attribute("y");
         if (x || y) {
           gfx::Point offset(0, 0);
-          if (x) offset.x = std::strtol(x, nullptr, 10);
-          if (y) offset.y = std::strtol(y, nullptr, 10);
+          if (x) offset.x = std::strtol(x, nullptr, 10)*2;
+          if (y) offset.y = std::strtol(y, nullptr, 10)*2;
           layer.setOffset(offset*scale);
         }
 

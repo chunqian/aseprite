@@ -632,10 +632,10 @@ void WidgetLoader::fillWidgetWithXmlElementAttributes(const TiXmlElement* elem, 
 
   if (minwidth || minheight ||
       maxwidth || maxheight) {
-    const int minw = (minwidth ? strtol(minwidth, NULL, 10): 0);
-    const int minh = (minheight ? strtol(minheight, NULL, 10): 0);
-    const int maxw = (maxwidth ? strtol(maxwidth, NULL, 10): 0);
-    const int maxh = (maxheight ? strtol(maxheight, NULL, 10): 0);
+    const int minw = (minwidth ? strtol(minwidth, NULL, 10)*2: 0);
+    const int minh = (minheight ? strtol(minheight, NULL, 10)*2: 0);
+    const int maxw = (maxwidth ? strtol(maxwidth, NULL, 10)*2: 0);
+    const int maxh = (maxheight ? strtol(maxheight, NULL, 10)*2: 0);
     widget->InitTheme.connect(
       [widget, minw, minh, maxw, maxh]{
         widget->setMinSize(gfx::Size(0, 0));

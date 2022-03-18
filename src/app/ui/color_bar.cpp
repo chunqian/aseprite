@@ -230,7 +230,7 @@ ColorBar::ColorBar(int align, TooltipManager* tooltipManager)
       m_buttons.setMinSize(gfx::Size(0, theme->dimensions.colorBarButtonsHeight()));
       m_buttons.setMaxSize(gfx::Size(std::numeric_limits<int>::max(),
                                      std::numeric_limits<int>::max())); // TODO add resetMaxSize
-      m_buttons.setMaxSize(gfx::Size(m_buttons.sizeHint().w,
+      m_buttons.setMaxSize(gfx::Size(m_buttons.sizeHint().w*2,
                                      theme->dimensions.colorBarButtonsHeight()));
 
       int scrollBarWidth = theme->dimensions.miniScrollbarSize();

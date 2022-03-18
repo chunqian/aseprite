@@ -30,14 +30,14 @@ private:
 
 SetPaletteEntrySizeCommand::SetPaletteEntrySizeCommand()
   : Command(CommandId::SetPaletteEntrySize(), CmdUIOnlyFlag)
-  , m_size(7)
+  , m_size(7*2)
 {
 }
 
 void SetPaletteEntrySizeCommand::onLoadParams(const Params& params)
 {
   if (params.has_param("size"))
-    m_size = params.get_as<int>("size");
+    m_size = params.get_as<int>("size")*2;
 }
 
 bool SetPaletteEntrySizeCommand::onChecked(Context* context)
