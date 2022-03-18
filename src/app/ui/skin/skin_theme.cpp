@@ -404,7 +404,7 @@ void SkinTheme::loadXml(BackwardCompatibility* backward)
         std::string id(idStr);
         LOG(VERBOSE, "THEME: Loading theme font %s\n", idStr);
 
-        int size = 10;
+        int size = 16;
         const char* sizeStr = xmlFont->Attribute("size");
         if (sizeStr)
           size = std::strtol(sizeStr, nullptr, 10);

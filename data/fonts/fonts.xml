@@ -4,42 +4,42 @@
 
   <font name="Arial"
         type="truetype"
-        file="Arial.ttf" />
+        file="ark-pixel-16px-zh_cn.ttf" />
 
   <font name="Arial Unicode"
         type="truetype"
-        file_win="arialuni.ttf"
-        file_mac="Arial Unicode.ttf" />
+        file_win="ark-pixel-16px-zh_cn.ttf"
+        file_mac="ark-pixel-16px-zh_cn.ttf" />
 
   <font name="Unicode Korean"
         type="truetype"
-        file_win="malgun.ttf">
+        file_win="ark-pixel-16px-zh_cn.ttf">
     <fallback font="Arial Unicode" />
   </font>
   <font name="Unicode Japanese"
         type="truetype"
-        file_win="msjh.ttc"
-        file_linux="NotoSansCJK-Regular.ttc">
+        file_win="ark-pixel-16px-zh_cn.ttf"
+        file_linux="ark-pixel-16px-zh_cn.ttf">
     <fallback font="Unicode Korean" />
   </font>
   <font name="Unicode"
         type="truetype"
-        file_win="Arial.ttf"
-        file_mac="Arial Unicode.ttf"
-        file_linux="DejaVuSans.ttf">
-    <fallback font="Unicode Japanese" size="8" />
+        file_win="ark-pixel-16px-zh_cn.ttf"
+        file_mac="ark-pixel-16px-zh_cn.ttf"
+        file_linux="ark-pixel-16px-zh_cn.ttf">
+    <fallback font="Unicode Japanese" size="16" />
   </font>
 
   <font name="Aseprite"
-        type="spritesheet"
-        file="aseprite_font.png">
-    <fallback font="Unicode" size="8" />
+        type="truetype"
+        file="ark-pixel-16px-zh_cn.ttf">
+    <fallback font="Unicode" size="16" />
   </font>
 
   <font name="Aseprite Mini"
-        type="spritesheet"
-        file="aseprite_mini.png">
-    <fallback font="Unicode" size="6" />
+        type="truetype"
+        file="ark-pixel-16px-zh_cn.ttf">
+    <fallback font="Unicode" size="16" />
   </font>
 
 </fonts>
