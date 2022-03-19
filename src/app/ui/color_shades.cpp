@@ -237,11 +237,11 @@ void ColorShades::onSizeHint(ui::SizeHintEvent& ev)
 {
   int size = this->size();
   if (size < 2)
-    ev.setSizeHint(gfx::Size((16+m_boxSize)*ui::guiscale()+textWidth(), 18*ui::guiscale()));
+    ev.setSizeHint(gfx::Size((16+m_boxSize)*ui::guiscale()+textWidth(), 18*ui::guiscale())*2);
   else {
     if (m_click == ClickWholeShade && size > 16)
       size = 16;
-    ev.setSizeHint(gfx::Size(6+m_boxSize*size, 18)*ui::guiscale());
+    ev.setSizeHint(gfx::Size(6+m_boxSize*size, 18)*ui::guiscale()*2);
   }
 }
 

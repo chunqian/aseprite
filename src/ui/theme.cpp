@@ -855,7 +855,7 @@ void Theme::drawTextBox(Graphics* g, Widget* widget,
       }
     }
 
-    len = font->textLength(beg);
+    len = font->textLength(beg)+1;
 
     // Render the text
     if (g) {

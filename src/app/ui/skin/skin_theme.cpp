@@ -1227,7 +1227,7 @@ void SkinTheme::paintMenuItem(ui::PaintEvent& ev)
        parts.checkSelected()->bitmap(0):
        parts.checkDisabled()->bitmap(0));
 
-    int x = bounds.x+4*scale-icon->width()/2;
+    int x = bounds.x+4*scale*2-icon->width()/2;
     int y = bounds.y+bounds.h/2-icon->height()/2;
     g->drawRgbaSurface(icon, x, y);
   }
@@ -1240,7 +1240,7 @@ void SkinTheme::paintMenuItem(ui::PaintEvent& ev)
 
   Rect pos = bounds;
   if (!bar)
-    pos.offset(widget->childSpacing()/2, 0);
+    pos.offset(widget->childSpacing(), 0);
   drawText(g, nullptr, fg, ColorNone, widget, pos,
            widget->align(), widget->mnemonic());
 

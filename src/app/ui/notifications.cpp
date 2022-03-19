@@ -54,7 +54,7 @@ void Notifications::addLink(INotificationDelegate* del)
 
 void Notifications::onSizeHint(SizeHintEvent& ev)
 {
-  ev.setSizeHint(gfx::Size(16, 10)*guiscale()); // TODO hard-coded flag size
+  ev.setSizeHint(gfx::Size(16*2, 10*2)*guiscale()); // TODO hard-coded flag size
 }
 
 void Notifications::onPaint(PaintEvent& ev)

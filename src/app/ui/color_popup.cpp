@@ -175,7 +175,7 @@ ColorPopup::ColorPopup(const ColorButtonOptions& options)
   , m_colorPaletteContainer(options.showIndexTab ?
                             new ui::View: nullptr)
   , m_colorPalette(options.showIndexTab ?
-                   new PaletteView(false, PaletteView::SelectOneColor, this, 7*guiscale()):
+                   new PaletteView(false, PaletteView::SelectOneColor, this, 7*guiscale()*2):
                    nullptr)
   , m_simpleColors(nullptr)
   , m_oldAndNew(Shade(2), ColorShades::ClickEntries)
@@ -267,7 +267,7 @@ ColorPopup::ColorPopup(const ColorButtonOptions& options)
 
   InitTheme.connect(
     [this]{
-      setSizeHint(gfx::Size(300*guiscale(), sizeHint().h));
+      setSizeHint(gfx::Size(300*guiscale()*2, sizeHint().h));
     });
   initTheme();
 }
