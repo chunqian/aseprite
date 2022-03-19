@@ -64,7 +64,7 @@ public:
   void notificationClick() override {
     auto& pref = Preferences::instance();
 
-    const int newScreenScale = 2;
+    const int newScreenScale = 1;
     const int newUIScale = 1;
 
     if (pref.general.screenScale() != newScreenScale)
