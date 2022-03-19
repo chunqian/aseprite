@@ -267,8 +267,8 @@ void ButtonSet::Item::onSizeHint(ui::SizeHintEvent& ev)
   gfx::Size iconSize;
   if (m_icon) {
     iconSize = m_icon->size();
-    iconSize.w = std::max(iconSize.w, 16*guiscale());
-    iconSize.h = std::max(iconSize.h, 16*guiscale());
+    iconSize.w = std::max(iconSize.w, 16*guiscale()*2);
+    iconSize.h = std::max(iconSize.h, 16*guiscale()*2);
   }
 
   gfx::Rect boxRc;
