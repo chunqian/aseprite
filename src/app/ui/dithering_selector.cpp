@@ -86,7 +86,7 @@ private:
       m_preview.reset();
     }
 
-    const int w = 128, h = 16;
+    const int w = 128*2, h = 16;
     doc::ImageRef image1(doc::Image::create(doc::IMAGE_RGB, w, h));
     render_rgba_linear_gradient(
       image1.get(),
