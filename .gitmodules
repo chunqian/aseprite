@@ -69,3 +69,6 @@
 [submodule "third_party/IXWebSocket"]
 	path = third_party/IXWebSocket
 	url = https://github.com/machinezone/IXWebSocket
+[submodule "third_party/gtest"]
+	path = third_party/gtest
+	url = https://github.com/aseprite/gtest.git
