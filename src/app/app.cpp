@@ -380,16 +380,15 @@ namespace {
 #endif
 
   struct CloseAllDocs {
-    CloseAllDocs() { }
+    Context* m_ctx;
+    CloseAllDocs(Context* ctx) : m_ctx(ctx) { }
     ~CloseAllDocs() {
-      auto ctx = UIContext::instance();
-
       std::vector<Doc*> docs;
 #ifdef ENABLE_UI
-      for (Doc* doc : ctx->getAndRemoveAllClosedDocs())
+      for (Doc* doc : static_cast<UIContext*>(m_ctx)->getAndRemoveAllClosedDocs())
         docs.push_back(doc);
 #endif
-      for (Doc* doc : ctx->documents())
+      for (Doc* doc : m_ctx->documents())
         docs.push_back(doc);
       for (Doc* doc : docs) {
         // First we close the document. In this way we receive recent
@@ -416,7 +415,7 @@ void App::run()
 #ifdef ENABLE_UI
   CloseMainWindow closeMainWindow(m_mainWindow);
 #endif
-  CloseAllDocs closeAllDocsAtExit;
+  CloseAllDocs closeAllDocsAtExit(context());
 
 #ifdef ENABLE_UI
   // Run the GUI
@@ -538,8 +537,16 @@ App::~App()
     ASSERT(m_instance == this);
 
 #ifdef ENABLE_SCRIPTING
-    // Destroy scripting engine
-    m_engine.reset(nullptr);
+    // Destroy scripting engine calling a method (instead of using
+    // reset()) because we need to keep the "m_engine" pointer valid
+    // until the very end, just in case that some Lua error happens
+    // now and we have to print that error using
+    // App::instance()->scriptEngine() in some way. E.g. if a Dialog
+    // onclose event handler fails with a Lua error when we are
+    // closing the app, a Lua error must be printed, and we need a
+    // valid m_engine pointer.
+    m_engine->destroy();
+    m_engine.reset();
 #endif
 
     // Delete file formats.
